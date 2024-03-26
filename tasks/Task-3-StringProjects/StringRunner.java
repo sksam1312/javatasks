@@ -6,207 +6,187 @@ public class StringRunner{
 
 public static void main(String[] args){
 
-String input;
-String output;
-int out;
-Scanner sc=new Scanner(System.in);
+
+String input,one,two,inputStart,inputEnd,replacingCharSequence;
+int index,start,end,num;
+char c;
 StringClass s=new StringClass();
+Scanner sc=new Scanner(System.in);
 
-
-if(args.length<=0){
-System.out.println("No input String received from command line so please enter a string to calculate its length:");
+try{
+System.out.println("Enter a String to get its length");
 input=sc.nextLine();
-out=s.stringLength(input);
-System.out.println("The length of the given string "+input+" is:"+out);
-}
-else{
-input=String.join(" ",args);
-out=s.stringLength(input);
-System.out.println("The length of the given string "+input+" is:"+out);
-}
+System.out.println(s.stringLength(input));
 
 
-System.out.println("Enter a string to convert it into a char Array:");
+System.out.println("Enter a String to convert it into char array");
 input=sc.nextLine();
-char[] ch=s.getCharArray(input);
-System.out.println("The char Array of a given string is: "+Arrays.toString(ch));
+System.out.println(Arrays.toString(s.getCharArray(input)));
 
 
-System.out.println("Enter a string to get the penultimate character(second character from last):");
+System.out.println("Enter a String to get its penultimate character");
 input=sc.nextLine();
-while(input.length()<2){
-System.out.println("Enter a valid string having length greater than or equal to 2 to get the penultimate character(second character from last):");
-input=sc.nextLine();
-}
-if(input.length()>=2){
-char penultimate=s.getPenultimateChar(input);
-System.out.println("The Penultimate char of a given string is: "+penultimate);
-}
+System.out.println(s.getPenultimateChar(input));
 
 
-System.out.println("Enter a string to check no of occurences of given character below:");
+System.out.println("Enter a String to get its character from last based on the given number");
 input=sc.nextLine();
-System.out.println("Enter a character to check for no of occurences in the given string above :");
-char c=sc.next().charAt(0);
+System.out.println("Enter a number to get character from the end of the string");
+num=sc.nextInt();
 sc.nextLine();
-int charCount=s.noOfOccurencesOfChar(input,c);
-System.out.println("The no of occurences of a given character in given string is: "+charCount);
+System.out.println(s.getCharFromLast(input,num));
 
 
-System.out.println("Enter a string to check for greatest index of given character below:");
+System.out.println("Enter a String to get its character at the given index");
 input=sc.nextLine();
-System.out.println("Enter a character to check for greatest index in the given string above :");
+System.out.println("Enter a number to get character at the index position");
+index=sc.nextInt();
+sc.nextLine();
+System.out.println(s.getCharAt(input,index));
+
+
+System.out.println("Enter a String to get no of occurences of a given character ");
+input=sc.nextLine();
+System.out.println("Enter a character to check its count at the given string");
 c=sc.next().charAt(0);
 sc.nextLine();
-int index=s.greatPositionOfChar(input,c);
-if(index==-1){
-System.out.println("The string doesn't contains the given charcter");
-}
-else{
-System.out.println("The greatest postion of a character  in the given string is:"+index);
-}
+System.out.println(s.noOfOccurencesOfChar(input,c));
 
 
-System.out.println("Enter a string to print its last 5 characters:");
+System.out.println("Enter a String to get its greatest position of a given character");
 input=sc.nextLine();
-while(input.length()<5){
-System.out.println("Enter a valid string have characters greater than or equal to 5 to print the last 5 characters of the given string");
+System.out.println("Enter a character to find its greatest position in the given string");
+c=sc.next().charAt(0);
+sc.nextLine();
+System.out.println(s.greatPositionOfChar(input,c));
+
+
+System.out.println("Enter a String to create substring from the given index position ");
 input=sc.nextLine();
-}
-String substr=s.toSubstring(input);
-System.out.println("The last 5 characters of a given string is "+substr);
+System.out.println("Enter a number to get character at the index position");
+index=sc.nextInt();
+sc.nextLine();
+System.out.println(s.toSubstringFromFirst(input,index));
 
 
-System.out.println("Enter a string to print its first 3 characters:");
+System.out.println("Enter a String to create substring from the given position from last");
 input=sc.nextLine();
-while(input.length()<3){
-System.out.println("Enter a valid string have characters greater than or equal to 3 to print its first 3 characters of the given string");
+System.out.println("Enter a number to get character from the last position");
+num=sc.nextInt();
+sc.nextLine();
+System.out.println(s.toSubstringFromLast(input,num));
+
+
+System.out.println("Enter a String to create substring from the given bounding(begin & end) index positions ");
 input=sc.nextLine();
-}
-substr=s.printFirstThreeChar(input);
-System.out.println("The first 3 characters of a given string is "+substr); 
+System.out.println("Enter a starting index number");
+start=sc.nextInt();
+sc.nextLine();
+System.out.println("Enter a ending index number");
+end=sc.nextInt();
+sc.nextLine();
+System.out.println(s.toSubstringAdvanced(input,start,end));
 
 
-System.out.println("Enter a string to replace its first 3 characters with XYZ");
+System.out.println("Enter a String to print its first n number of characters");
 input=sc.nextLine();
-while(input.length()<3){
-System.out.println("Enter a valid string have characters greater than or equal to 3 to replace its first 3 characters of the given string with XYZ");
+System.out.println("Enter a number to print first n number of characters in the givenn string");
+num=sc.nextInt();
+sc.nextLine();
+System.out.println(s.printFirstNNoOfChar(input,num));
+
+
+System.out.println("Enter a String to replace with character sequence");
 input=sc.nextLine();
-}
-output=s.charReplace(input);
-System.out.println("The first 3 characters of a given string is replaced with XYZ is "+output);
+System.out.println("Enter a starting index number");
+start=sc.nextInt();
+sc.nextLine();
+System.out.println("Enter a ending index number");
+end=sc.nextInt();
+sc.nextLine();
+System.out.println("Enter the character sequence for replacing in the given string");
+replacingCharSequence=sc.nextLine();
+System.out.println(s.charReplace(input,start,end,replacingCharSequence));
 
 
-System.out.println("Enter a string to check the string starting with:");
-input= sc.nextLine().toLowerCase();
-System.out.println("Enter a string to check whether the input string starts with:");
-String start= sc.nextLine().toLowerCase();
-boolean isStart=s.stringStartsWith(input,start);
-if(isStart==true){
-System.out.println("YES...the input string:"+" "+input+" " +"starts with:"+" "+start+" or "+start.toUpperCase());
-}
-else
-{
-System.out.println("NO...the input string:"+" "+input+" " +"does not starts with:"+" "+start+" or "+start.toUpperCase());
-}
+System.out.println("Enter a String to check whether it starts with given character sequence");
+input=sc.nextLine();
+System.out.println("Enter the character sequence to check the given string starts with");
+inputStart=sc.nextLine();
+System.out.println(s.stringStartsWith(input,inputStart));
 
 
-System.out.println("Enter a string to check the string ending with:");
-input= sc.nextLine().toLowerCase();
-System.out.println("Enter a string to check whether the input string ends with:");
-String end= sc.nextLine().toLowerCase();
-boolean isEnds=s.stringEndsWith(input,end);
-if(isEnds==true){
-System.out.println("YES...the input string:"+" "+input+" " +"ends with:"+" "+end+" or "+end.toUpperCase());
-}
-else
-{
-System.out.println("NO...the input string:"+" "+input+" " +"does not ends with:"+" "+end+" or "+end.toUpperCase());
-}
+System.out.println("Enter a String to check whether it ends with given character sequence");
+input=sc.nextLine();
+System.out.println("Enter the character sequence to check the given string ends with");
+inputEnd=sc.nextLine();
+System.out.println(s.stringEndsWith(input,inputEnd));
 
 
-System.out.println("Enter a string to convert it into uppercase:");
-input= sc.nextLine();
-output=s.upperCase(input);
-System.out.println("The Uppercase for the given string"+" "+input+" "+"is:"+" "+output);
+System.out.println("Enter a String to convert it into uppercase");
+input=sc.nextLine();
+System.out.println(s.upperCase(input));
 
 
-System.out.println("Enter a string to convert it into lowercase:");
-input= sc.nextLine();
-output=s.lowerCase(input);
-System.out.println("The Lowercase for the given string"+" "+input+" "+"is:"+" "+output);
+System.out.println("Enter a String to convert it into lowercase");
+input=sc.nextLine();
+System.out.println(s.lowerCase(input));
 
 
-System.out.println("Enter a string to reverse:");
-input= sc.nextLine();
-output=s.stringReverse(input);
-System.out.println("The reverse of a given string "+input+" is:"+" "+output);
+System.out.println("Enter a String to reverse");
+input=sc.nextLine();
+System.out.println(s.stringReverse(input));
+
+System.out.println("Enter a line of multiple string to print the string");
+input=sc.nextLine();
+System.out.println(s.lineWithMultipleString(input));
 
 
-System.out.println("Enter consecutive multiple strings to print:");
-input= sc.nextLine();
-output=s.lineWithMultipleString(input);
-System.out.println("The given multiple string is:"+" "+output);
+System.out.println("Enter a line of multiple string to concatenate without any spaces and print the string");
+input=sc.nextLine();
+System.out.println(s.concatStrings(input));
+
+System.out.println("Enter multiple string in a line to convert it into string array");
+input=sc.nextLine();
+System.out.println(s.stringArray(input));
 
 
-System.out.println("Enter multiple strings to concatenate them  without space :");
-input= sc.nextLine();
-output=s.concatStrings(input);
-System.out.println("The concatenated string from multiple strings without space is: "+output);
-
-
-System.out.println("Enter a String to convert it into String array:");
-input= sc.nextLine();
-output=s.stringArray(input);
-System.out.println("The string array of given string: "+ output);
-
-
-System.out.println("Enter a String to merge with hiphen:");
-String [] inputs=new String[6];
-for(int i=0;i<6;i++){
+System.out.println("Enter the number of string inputs you are going to give");
+num=sc.nextInt();
+sc.nextLine();
+String[] inputs=new String[num];
+for(int i=0;i<num;i++){
 System.out.println("Enter String "+(i+1));
 inputs[i]=sc.nextLine();
 }
-output=s.mergeWithHiphen(inputs);
-System.out.println("The given String Merged with hiphen is: "+output);
+System.out.println(s.mergeWithHiphen(inputs));
 
 
-System.out.println("Enter two Strings to check for equal 'case sensitive' :");
-String[] strings=new String[2];
-for(int i=0;i<2;i++){
-System.out.println("Enter String "+(i+1));
-strings[i]= sc.nextLine();
-}
-boolean isEqual=s.isEqualStrings(strings[0],strings[1]);
-if(isEqual){
-System.out.println("The given strings are equal");
-}
-else
-{
-System.out.println("The given strings are not equal");
-}
+System.out.println("Enter String 1 to compare for equality (case sensitive) with string 2:");
+one=sc.nextLine();
+System.out.println("Enter String 2:");
+two=sc.nextLine();
+System.out.println(s.isEqualStrings(one,two));
 
 
-System.out.println("Enter two Strings to check for equal 'case insensitive' :");
-for(int i=0;i<2;i++){
-System.out.println("Enter String "+(i+1));
-strings[i]= sc.nextLine();
-}
-isEqual=s.isEqualCaseIgnore(strings[0],strings[1]);
-if(isEqual){
-System.out.println("The given strings are equal");
-}
-else
-{
-System.out.println("The given strings are not equal");
+System.out.println("Enter String 1 to compare for equality (case insensitive) with string 2:");
+one=sc.nextLine();
+System.out.println("Enter String 2:");
+two=sc.nextLine();
+System.out.println(s.isEqualCaseIgnore(one,two));
+
+
+System.out.println("Enter a String with space on either left,right or both sides to trim its spaces");
+input=sc.nextLine();
+System.out.println(s.spaceTrim(input));
 }
 
 
-System.out.println("Enter a String with space at front and back to trim:");
-input= sc.nextLine();
-output =s.spaceTrim(input);
-System.out.println("The given input is:"+input);
-System.out.println("The output is:"+output);
+catch(Exception e){
+System.out.println("Please check and provide valid inputs");
+e.printStackTrace();
+}
+
 
 }
 }
