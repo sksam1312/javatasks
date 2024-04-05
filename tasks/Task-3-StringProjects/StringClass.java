@@ -5,78 +5,63 @@ public class StringClass{
 
 
 public int stringLength(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 int output=input.length();
 return output;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value 0");
-e.printStackTrace();
-return 0;
-}
-}
-
 
 
 public char[] getCharArray(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 char[] ch=input.toCharArray();
 return ch;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value new char[0]");
-e.printStackTrace();
-return new char[0];
-}
 }
 
 
 public char getPenultimateChar(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 char penultimate=input.charAt(input.length()-2);
 return penultimate;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value 0");
-e.printStackTrace();
-return '0';
-}
 }
 
 
 public char getCharFromLast(String input,int fromLast){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (fromLast <= 0 || fromLast > input.length()) {
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
 char penultimate=input.charAt(input.length()-fromLast);
 return penultimate;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value 0");
-e.printStackTrace();
-return '\0';
-}
 }
 
 
 public char getCharAt(String input,int index){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (index < 0 || index > input.length()) {
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
 char c=input.charAt(index);
 return c;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value /0");
-e.printStackTrace();
-return '\0';
-}
 }
 
 
 public int noOfOccurencesOfChar(String input,char c){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (!Character.isDefined(c)) {
+throw new IllegalArgumentException("Invalid character: " + c);
+}
 int charCount=0;
 for(int i=0;i<input.length();i++){
 if(c==input.charAt(i)){
@@ -85,160 +70,129 @@ charCount++;
 }
 return charCount;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value 0");
-e.printStackTrace();
-return 0;
-}
-}
 
 
 public  int greatPositionOfChar(String input,char c){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (!Character.isDefined(c)) {
+throw new IllegalArgumentException("Invalid character: " + c);
+}
 int index=input.lastIndexOf(c);
 return index;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value -1");
-e.printStackTrace();
-return -1;
-}
 }
 
 
 public String toSubstringFromFirst(String input,int startIndex){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (startIndex < 0 || startIndex > input.length()) {
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
 String substr=input.substring(startIndex);
 return substr;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
 public String toSubstringFromLast(String input,int lastNNoOfChar){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (lastNNoOfChar < 0 || lastNNoOfChar > input.length()) {
+throw new IllegalArgumentException("Invalid integer value out of range to calculate");
+}
 int index=input.length()-lastNNoOfChar;
 String substr=input.substring(index);
 return substr;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
-}
 
 
 public String toSubstringAdvanced(String input,int startIndex,int endIndex){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (startIndex < 0 || startIndex > input.length()) {
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
+if (endIndex < 0 || endIndex > input.length()) {
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
 String substr=input.substring(startIndex,endIndex);
 return substr;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
 public String printFirstNNoOfChar(String input,int n){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (n < 0 || n > input.length()){
+throw new IllegalArgumentException("Invalid value for n which is out of bound/range.");
+}
 int index=0;
 int firstNChar=n;
 String substr=input.substring(index,firstNChar);
 return substr;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
-}
 
 
 public String charReplace(String input,int start,int end,String replacingCharSequence){
-try{
+if (input==null || replacingCharSequence==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+if (start < 0 || start > input.length()){
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
+if (end < 0 || end > input.length()){
+throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
+}
 String output=input.replace(input.substring(start,end),replacingCharSequence);
 return output;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
 public boolean stringStartsWith(String input,String start){
-try{
+if (input==null || start==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 boolean isStart=input.startsWith(start);
 return isStart;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value-false");
-e.printStackTrace();
-return false;
-}
 }
 
 
 public boolean stringEndsWith(String input,String end){
-try{
+if (input==null || end==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 boolean isEnds=input.endsWith(end);
 return isEnds;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value-false");
-e.printStackTrace();
-return false;
-}
 }
 
 
 public String upperCase(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 String output=input.toUpperCase();
 return output;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
 public  String lowerCase(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 String output=input.toLowerCase();
 return output;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
 public String stringReverse(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 char[] ch =new char[input.length()];
 ch=input.toCharArray();
 char[] rev=new char[input.length()];
@@ -250,30 +204,20 @@ rev[i]=ch[(l-1)-i];
 String output=new String(rev);
 return output;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
-}
 
 
 public String lineWithMultipleString(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 return input;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
 public  String concatStrings(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 String[] s=input.split("\\s+");
 String output="";
 for(int i=0;i<s.length;i++){
@@ -281,17 +225,12 @@ output=output+s[i];
 }
 return output;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
-}
 
 
 public String stringArray(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 String[] s=input.split("\\s+");
 String output="{";
 char c='"';
@@ -307,16 +246,13 @@ firstelement=false;
 output=output+"}";
 return output;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please  check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
-}
 
 public String mergeWithHiphen(String[] inputs){
-try{
+for(String element:inputs){
+if (element==null) {
+throw new IllegalArgumentException("Inputs cannot be null");  
+}
+}
 String[] s=inputs;
 String output="";
 boolean firstelement=true;
@@ -331,54 +267,31 @@ firstelement=false;
 }
 return output;
 }
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
-}
-
 
 public  boolean isEqualStrings(String one,String two){
-try{
+if (one==null || two==null) {
+throw new IllegalArgumentException("Inputs cannot be null");
+}
 boolean isEqual=one.equals(two);
 return isEqual;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value-false");
-e.printStackTrace();
-return false;
-}
 }
 
 
 public boolean isEqualCaseIgnore(String one,String two){
-try{
+if (one==null || two==null) {
+throw new IllegalArgumentException("Inputs cannot be null");
+}
 boolean isEqual=one.equalsIgnoreCase(two);
 return isEqual;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid inputs. 3.Now it will return default value-false");
-e.printStackTrace();
-return false;
-}
 }
 
 
 public String spaceTrim(String input){
-try{
+if (input==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
 String output =input.trim();
 return output;
-}
-catch(Exception e)
-{
-System.out.println("1.Input String values cannot be null. 2.Please check and provide valid input String. 3.Now it will return default value an empty string");
-e.printStackTrace();
-return "";
-}
 }
 
 
