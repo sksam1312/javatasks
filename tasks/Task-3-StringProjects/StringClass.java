@@ -4,37 +4,42 @@ package com.string;
 public class StringClass{
 
 
-public int stringLength(String input){
+public static void nullCheck(String input) throws IllegalArgumentException {
 if (input==null) {
 throw new IllegalArgumentException("Input cannot be null");
 }
+}
+
+
+public static void nullCheck(String input,String str) throws IllegalArgumentException {
+if (input==null || str==null) {
+throw new IllegalArgumentException("Input cannot be null");
+}
+}
+
+public int stringLength(String input){
+nullCheck(input);
 int output=input.length();
 return output;
 }
 
 
 public char[] getCharArray(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 char[] ch=input.toCharArray();
 return ch;
 }
 
 
 public char getPenultimateChar(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 char penultimate=input.charAt(input.length()-2);
 return penultimate;
 }
 
 
 public char getCharFromLast(String input,int fromLast){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (fromLast <= 0 || fromLast > input.length()) {
 throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
 }
@@ -44,9 +49,7 @@ return penultimate;
 
 
 public char getCharAt(String input,int index){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (index < 0 || index > input.length()) {
 throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
 }
@@ -56,9 +59,7 @@ return c;
 
 
 public int noOfOccurencesOfChar(String input,char c){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (!Character.isDefined(c)) {
 throw new IllegalArgumentException("Invalid character: " + c);
 }
@@ -73,9 +74,7 @@ return charCount;
 
 
 public  int greatPositionOfChar(String input,char c){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (!Character.isDefined(c)) {
 throw new IllegalArgumentException("Invalid character: " + c);
 }
@@ -85,9 +84,7 @@ return index;
 
 
 public String toSubstringFromFirst(String input,int startIndex){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (startIndex < 0 || startIndex > input.length()) {
 throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
 }
@@ -97,9 +94,7 @@ return substr;
 
 
 public String toSubstringFromLast(String input,int lastNNoOfChar){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (lastNNoOfChar < 0 || lastNNoOfChar > input.length()) {
 throw new IllegalArgumentException("Invalid integer value out of range to calculate");
 }
@@ -110,9 +105,7 @@ return substr;
 
 
 public String toSubstringAdvanced(String input,int startIndex,int endIndex){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (startIndex < 0 || startIndex > input.length()) {
 throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
 }
@@ -125,9 +118,7 @@ return substr;
 
 
 public String printFirstNNoOfChar(String input,int n){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 if (n < 0 || n > input.length()){
 throw new IllegalArgumentException("Invalid value for n which is out of bound/range.");
 }
@@ -139,9 +130,7 @@ return substr;
 
 
 public String charReplace(String input,int start,int end,String replacingCharSequence){
-if (input==null || replacingCharSequence==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input,replacingCharSequence);
 if (start < 0 || start > input.length()){
 throw new IllegalArgumentException("Invalid integer value for index which is out of bound/range.");
 }
@@ -154,45 +143,35 @@ return output;
 
 
 public boolean stringStartsWith(String input,String start){
-if (input==null || start==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input,start);
 boolean isStart=input.startsWith(start);
 return isStart;
 }
 
 
 public boolean stringEndsWith(String input,String end){
-if (input==null || end==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input,end);
 boolean isEnds=input.endsWith(end);
 return isEnds;
 }
 
 
 public String upperCase(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 String output=input.toUpperCase();
 return output;
 }
 
 
 public  String lowerCase(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 String output=input.toLowerCase();
 return output;
 }
 
 
 public String stringReverse(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 char[] ch =new char[input.length()];
 ch=input.toCharArray();
 char[] rev=new char[input.length()];
@@ -207,17 +186,13 @@ return output;
 
 
 public String lineWithMultipleString(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 return input;
 }
 
 
 public  String concatStrings(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 String[] s=input.split("\\s+");
 String output="";
 for(int i=0;i<s.length;i++){
@@ -228,9 +203,7 @@ return output;
 
 
 public String stringArray(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 String[] s=input.split("\\s+");
 String output="{";
 char c='"';
@@ -248,10 +221,8 @@ return output;
 }
 
 public String mergeWithHiphen(String[] inputs){
-for(String element:inputs){
-if (element==null) {
-throw new IllegalArgumentException("Inputs cannot be null");  
-}
+for(String input:inputs){
+nullCheck(input);
 }
 String[] s=inputs;
 String output="";
@@ -269,27 +240,21 @@ return output;
 }
 
 public  boolean isEqualStrings(String one,String two){
-if (one==null || two==null) {
-throw new IllegalArgumentException("Inputs cannot be null");
-}
+nullCheck(one,two);
 boolean isEqual=one.equals(two);
 return isEqual;
 }
 
 
 public boolean isEqualCaseIgnore(String one,String two){
-if (one==null || two==null) {
-throw new IllegalArgumentException("Inputs cannot be null");
-}
+nullCheck(one,two);
 boolean isEqual=one.equalsIgnoreCase(two);
 return isEqual;
 }
 
 
 public String spaceTrim(String input){
-if (input==null) {
-throw new IllegalArgumentException("Input cannot be null");
-}
+nullCheck(input);
 String output =input.trim();
 return output;
 }
