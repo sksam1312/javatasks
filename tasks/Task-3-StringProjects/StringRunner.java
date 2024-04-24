@@ -7,7 +7,7 @@ public class StringRunner{
 public static void main(String[] args){
 
 
-String input,one,two,inputStart,inputEnd,replacingCharSequence;
+String input,one,two,inputStart,inputEnd,replacingCharSequence,delimit;
 int index,start,end,num;
 char c;
 StringClass s=new StringClass();
@@ -30,18 +30,6 @@ try{
 System.out.println("Enter a String to convert it into char array:");
 input=sc.nextLine();
 System.out.println(Arrays.toString(s.getCharArray(input)));
-}
-catch(Exception e){
-System.out.println("Error: "+ e.getMessage());
-e.printStackTrace();
-sc.nextLine();
-}
-
-
-try{
-System.out.println("Enter a String to get its penultimate character:");
-input=sc.nextLine();
-System.out.println(s.getPenultimateChar(input));
 }
 catch(Exception e){
 System.out.println("Error: "+ e.getMessage());
@@ -110,7 +98,13 @@ input=sc.nextLine();
 System.out.println("Enter a character to find its greatest position in the given string:");
 c=sc.next().charAt(0);
 sc.nextLine();
-System.out.println(s.greatPositionOfChar(input,c));
+index=s.greatPositionOfChar(input,c);
+if(index==-1){
+System.out.println("The given character doesn't present in the given string.Please check!!!");
+}
+else{
+System.out.println(index);
+}
 }
 catch(Exception e){
 System.out.println("Error: "+ e.getMessage());
@@ -185,7 +179,7 @@ sc.nextLine();
 try{
 System.out.println("Enter a String to print its first n number of characters:");
 input=sc.nextLine();
-System.out.println("Enter a number to print first n number of characters in the givenn string:");
+System.out.println("Enter a number to print first n number of characters in the given string:");
 num=sc.nextInt();
 sc.nextLine();
 System.out.println(s.printFirstNNoOfChar(input,num));
@@ -307,9 +301,11 @@ sc.nextLine();
 
 
 try{
-System.out.println("Enter a line of multiple string to concatenate without any spaces and print the string:");
+System.out.println("Enter a line of multiple string to concatenate and print the string:");
 input=sc.nextLine();
-System.out.println(s.concatStrings(input));
+System.out.println("Enter a character sequence for delimiter to remove and concatenate the multiple string:");
+delimit=sc.nextLine();
+System.out.println(s.concatStrings(input,delimit));
 }
 catch(Exception e){
 System.out.println("Error: "+ e.getMessage());
@@ -321,7 +317,9 @@ sc.nextLine();
 try{
 System.out.println("Enter multiple string in a line to convert it into string array:");
 input=sc.nextLine();
-System.out.println(s.stringArray(input));
+System.out.println("Enter a character sequence for delimiter to split the multiple string to array:");
+delimit=sc.nextLine();
+System.out.println(s.stringArray(input,delimit));
 }
 catch(Exception e){
 System.out.println("Error: "+ e.getMessage());
@@ -339,7 +337,10 @@ for(int i=0;i<num;i++){
 System.out.println("Enter String "+(i+1));
 inputs[i]=sc.nextLine();
 }
-System.out.println(s.mergeWithHiphen(inputs));
+System.out.println("Enter a symbol to seperate the given strings in between:");
+c=sc.next().charAt(0);
+sc.nextLine();
+System.out.println(s.mergeWithSymbol(inputs,c));
 }
 catch(InputMismatchException ime){
 System.out.println("Error:InputMismatchException caught.Please provide only integer values. ");
