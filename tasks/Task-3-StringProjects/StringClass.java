@@ -1,19 +1,10 @@
 package com.string;
 
 
-public class StringClass{
+public class StringClass {
 
 
-public static class StringClassException extends RuntimeException {
-
-public StringClassException(String message) {
-super(message);
-}
-
-}
-
-
-public static void nullCheck(String input) throws StringClassException{
+public static void nullCheck(String input) throws StringClassException {
 if (input==null) {
 throw new StringClassException("Input cannot be null");
 }
@@ -31,26 +22,25 @@ if (index <= 0 || index > stringLength(input) ) {
 throw new StringClassException("Invalid integer value for index which is out of bound/range.");
 }
 }
-
 }
 
 
-public static int stringLength(String input){
+public static int stringLength(String input) throws StringClassException{
 nullCheck(input);
 int output=input.length();
 return output;
 }
 
 
-public char[] getCharArray(String input){
+public char[] getCharArray(String input) throws StringClassException{
 nullCheck(input);
-char[] ch=input.toCharArray();
-return ch;
+char[] charArray=input.toCharArray();
+return charArray;
 }
 
 
 
-public char getCharFromLast(String input,int fromLast){
+public char getCharFromLast(String input,int fromLast) throws StringClassException{
 nullCheck(input);
 indexRangeCheck(input,fromLast,false);
 char penultimate=input.charAt(stringLength(input)-fromLast);
@@ -58,7 +48,7 @@ return penultimate;
 }
 
 
-public char getCharAt(String input,int index){
+public static char getCharAt(String input,int index) throws StringClassException{
 nullCheck(input);
 indexRangeCheck(input,index,true);
 char c=input.charAt(index);
@@ -66,14 +56,14 @@ return c;
 }
 
 
-public int noOfOccurencesOfChar(String input,char c){
+public int noOfOccurencesOfChar(String input,char charInput) throws StringClassException{
 nullCheck(input);
-if (!Character.isDefined(c)) {
-throw new StringClassException("Invalid character: " + c);
+if (!Character.isDefined(charInput)) {
+throw new StringClassException("Invalid character: " + charInput);
 }
 int charCount=0;
 for(int i=0;i<stringLength(input);i++){
-if(c==input.charAt(i)){
+if(charInput==input.charAt(i)){
 charCount++;
 }
 }
@@ -81,17 +71,17 @@ return charCount;
 }
 
 
-public  int greatPositionOfChar(String input,char c){
+public  int greatPositionOfChar(String input,char charInput) throws StringClassException{
 nullCheck(input);
-if (!Character.isDefined(c)) {
-throw new StringClassException("Invalid character: " + c);
+if (!Character.isDefined(charInput)) {
+throw new StringClassException("Invalid character: " + charInput);
 }
-int index=input.lastIndexOf(c);
+int index=input.lastIndexOf(charInput);
 return index;
 }
 
 
-public String toSubstringFromFirst(String input,int startIndex){
+public String toSubstringFromFirst(String input,int startIndex) throws StringClassException{
 nullCheck(input);
 indexRangeCheck(input,startIndex,true);
 String substr=input.substring(startIndex);
@@ -99,7 +89,7 @@ return substr;
 }
 
 
-public String toSubstringFromLast(String input,int lastNNoOfChar){
+public String toSubstringFromLast(String input,int lastNNoOfChar) throws StringClassException{
 nullCheck(input);
 indexRangeCheck(input,lastNNoOfChar,false);
 int index=stringLength(input)-lastNNoOfChar;
@@ -108,7 +98,7 @@ return substr;
 }
 
 
-public String toSubstringAdvanced(String input,int startIndex,int endIndex){
+public String toSubstringAdvanced(String input,int startIndex,int endIndex) throws StringClassException{
 nullCheck(input);
 indexRangeCheck(input,startIndex,true);
 indexRangeCheck(input,endIndex,true);
@@ -117,17 +107,17 @@ return substr;
 }
 
 
-public String printFirstNNoOfChar(String input,int n){
+public String printFirstNNoOfChar(String input,int num) throws StringClassException{
 nullCheck(input);
-indexRangeCheck(input,n,false);
+indexRangeCheck(input,num,false);
 int index=0;
-int firstNChar=n;
+int firstNChar=num;
 String substr=input.substring(index,firstNChar);
 return substr;
 }
 
 
-public String charReplace(String input,int start,int end,String replacingCharSequence){
+public String charReplace(String input,int start,int end,String replacingCharSequence) throws StringClassException{
 nullCheck(input);
 nullCheck(replacingCharSequence);
 indexRangeCheck(input,start,true);
@@ -137,7 +127,7 @@ return output;
 }
 
 
-public boolean stringStartsWith(String input,String start){
+public boolean stringStartsWith(String input,String start) throws StringClassException{
 nullCheck(input);
 nullCheck(start);
 boolean isStart=input.startsWith(start);
@@ -145,7 +135,7 @@ return isStart;
 }
 
 
-public boolean stringEndsWith(String input,String end){
+public boolean stringEndsWith(String input,String end) throws StringClassException{
 nullCheck(input);
 nullCheck(end);
 boolean isEnds=input.endsWith(end);
@@ -153,66 +143,60 @@ return isEnds;
 }
 
 
-public String upperCase(String input){
+public String upperCase(String input) throws StringClassException{
 nullCheck(input);
 String output=input.toUpperCase();
 return output;
 }
 
 
-public  String lowerCase(String input){
+public  String lowerCase(String input) throws StringClassException{
 nullCheck(input);
 String output=input.toLowerCase();
 return output;
 }
 
 
-public String stringReverse(String input){
+public String stringReverse(String input) throws StringClassException{
 nullCheck(input);
-char[] ch =new char[stringLength(input)];
-ch=input.toCharArray();
-char[] rev=new char[stringLength(input)];
-int l=ch.length;
-for (int i=0;i<l;i++)
-{
-rev[i]=ch[(l-1)-i];
+String output="";
+for(int i=stringLength(input)-1;i>=0;i--){
+output=output+getCharAt(input,i);
 }
-String output=new String(rev);
 return output;
 }
 
 
-public String lineWithMultipleString(String input){
+public String lineWithMultipleString(String input) throws StringClassException{
 nullCheck(input);
 return input;
 }
 
 
-public  String concatStrings(String input,String sp){
+public  String concatStrings(String input,String splitter) throws StringClassException{
 nullCheck(input);
-nullCheck(sp);
-String[] s=input.split(sp);
+nullCheck(splitter);
+String[] stringArray=input.split(splitter);
 String output="";
-for(int i=0;i<s.length;i++){
-output=output+s[i];
+for(int i=0;i<stringArray.length;i++){
+output=output+stringArray[i];
 }
 return output;
 }
 
 
-public String stringArray(String input,String sp){
+public String stringArray(String input,String splitter) throws StringClassException{
 nullCheck(input);
-nullCheck(sp);
-String[] s=input.split(sp);
+nullCheck(splitter);
+String[] stringArray=input.split(splitter);
 String output="{";
-char c='"';
-char d='}';
+char quotes='"';
 boolean firstelement=true;
-for(int i=0;i<s.length;i++){
+for(int i=0;i<stringArray.length;i++){
 if(!firstelement){
 output=output+",";
 }
-output=output+c+s[i]+c;
+output=output+quotes+stringArray[i]+quotes;
 firstelement=false;
 }
 output=output+"}";
@@ -220,26 +204,26 @@ return output;
 }
 
 
-public String mergeWithSymbol(String[] inputs,char c){
+public String mergeWithSymbol(String[] inputs,char charInput) throws StringClassException{
 for(String input:inputs){
 nullCheck(input);
 }
-String[] s=inputs;
+String[] stringArray=inputs;
 String output="";
 boolean firstelement=true;
-for(int i=0;i<s.length;i++)
+for(int i=0;i<stringArray.length;i++)
 {
 if(!firstelement)
 {
-output=output+c;
+output=output+charInput;
 }
-output=output+s[i];
+output=output+stringArray[i];
 firstelement=false;
 }
 return output;
 }
 
-public  boolean isEqualStrings(String one,String two){
+public  boolean isEqualStrings(String one,String two) throws StringClassException{
 nullCheck(one);
 nullCheck(two);
 boolean isEqual=one.equals(two);
@@ -247,7 +231,7 @@ return isEqual;
 }
 
 
-public boolean isEqualCaseIgnore(String one,String two){
+public boolean isEqualCaseIgnore(String one,String two) throws StringClassException{
 nullCheck(one);
 nullCheck(two);
 boolean isEqual=one.equalsIgnoreCase(two);
@@ -255,7 +239,7 @@ return isEqual;
 }
 
 
-public String spaceTrim(String input){
+public String spaceTrim(String input) throws StringClassException{
 nullCheck(input);
 String output =input.trim();
 return output;
