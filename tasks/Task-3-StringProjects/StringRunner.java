@@ -10,7 +10,7 @@ public static void main(String[] args){
 String input,one,two,inputStart,inputEnd,replacingCharSequence,delimit;
 int index,start,end,num;
 char charInput;
-StringClass str=new StringClass();
+StringProject str=new StringProject();
 Scanner sc=new Scanner(System.in);
 
 
@@ -116,7 +116,7 @@ sc.nextLine();
 try{
 System.out.println("Enter a String to create substring from the given index position: ");
 input=sc.nextLine();
-System.out.println("Enter a number to make substring from string that start  at the index position:");
+System.out.println("Enter a number to make substring from the given string that start at the index position:");
 index=sc.nextInt();
 sc.nextLine();
 System.out.println(str.toSubstringFromFirst(input,index));
@@ -319,7 +319,8 @@ System.out.println("Enter multiple string in a line to convert it into string ar
 input=sc.nextLine();
 System.out.println("Enter a character sequence for delimiter to split the multiple string to array:");
 delimit=sc.nextLine();
-System.out.println(str.stringArray(input,delimit));
+String[] outputArray=str.stringToArray(input,delimit);
+System.out.println(Arrays.toString(outputArray));
 }
 catch(Exception exp){
 System.out.println("Error: "+ exp.getMessage());
