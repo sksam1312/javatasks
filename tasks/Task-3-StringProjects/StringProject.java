@@ -5,28 +5,21 @@ public class StringProject{
 
 int lengthOfString;
 
-public static void nullCheck(String input) throws InvalidDataException {
+public void nullCheck(Object input) throws InvalidDataException {
 if (input==null) {
 throw new InvalidDataException("Input cannot be null");
 }
 }
 
 
-public static void nullCheck(String[] inputs) throws InvalidDataException {
-if (inputs==null) {
-throw new InvalidDataException("Input Array cannot be null");
-}
-}
-
-
-public static void indexRangeCheck(int strLength,int index) throws InvalidDataException{
+public void indexRangeCheck(int strLength,int index) throws InvalidDataException{
 if (index < 0 || index >=strLength) {
 throw new InvalidDataException("Invalid integer value for index which is out of bound/range.");
 }
 }
 
 
-public static void indexRangeCheck(int strLength,int startIndex,int endIndex) throws InvalidDataException {
+public  void indexRangeCheck(int strLength,int startIndex,int endIndex) throws InvalidDataException {
 if (startIndex < 0) {
 throw new InvalidDataException("Start index cannot be negative");
 }
@@ -39,14 +32,14 @@ throw new InvalidDataException("Start index  cannot be greater than end index");
 }
 
 
-public static void validateNumber(int strLength, int num) throws InvalidDataException {
+public void validateNumber(int strLength, int num) throws InvalidDataException {
 if (num<=0||num>strLength){
 throw new InvalidDataException("Invalid integer value/number which is out of bound/range.");
 }
 }
 
 
-public static int stringLength(String input) throws InvalidDataException{
+public  int stringLength(String input) throws InvalidDataException{
 nullCheck(input);
 int output=input.length();
 return output;
@@ -61,7 +54,6 @@ return charArray;
 
 
 public char getCharFromLast(String input,int fromLast) throws InvalidDataException{
-nullCheck(input);
 lengthOfString=stringLength(input);
 validateNumber(lengthOfString,fromLast);
 char penultimate=input.charAt(stringLength(input)-fromLast);
@@ -70,7 +62,6 @@ return penultimate;
 
 
 public char getCharAt(String input,int index) throws InvalidDataException{
-nullCheck(input);
 lengthOfString=stringLength(input);
 indexRangeCheck(lengthOfString,index);
 char character=input.charAt(index);
@@ -79,12 +70,11 @@ return character;
 
 
 public int noOfOccurencesOfChar(String input,char charInput) throws InvalidDataException{
-nullCheck(input);
+lengthOfString=stringLength(input);
 if (!Character.isDefined(charInput)) {
 throw new InvalidDataException("Invalid character: " + charInput);
 }
 int charCount=0;
-lengthOfString=stringLength(input);
 for(int i=0;i<lengthOfString;i++){
 if(charInput==input.charAt(i)){
 charCount++;
@@ -105,7 +95,6 @@ return index;
 
 
 public String toSubstringFromFirst(String input,int index) throws InvalidDataException{
-nullCheck(input);
 lengthOfString=stringLength(input);
 indexRangeCheck(lengthOfString,index);
 String substr=input.substring(index);
@@ -114,7 +103,6 @@ return substr;
 
 
 public String toSubstringFromLast(String input,int lastNNoOfChar) throws InvalidDataException{
-nullCheck(input);
 lengthOfString=stringLength(input);
 validateNumber(lengthOfString,lastNNoOfChar);
 int index=stringLength(input)-lastNNoOfChar;
@@ -124,7 +112,6 @@ return substr;
 
 
 public String toSubstringAdvanced(String input,int start,int end) throws InvalidDataException{
-nullCheck(input);
 lengthOfString=stringLength(input);
 indexRangeCheck(lengthOfString,start,end);
 String substr=input.substring(start,end);
@@ -133,7 +120,6 @@ return substr;
 
 
 public String printFirstNNoOfChar(String input,int num) throws InvalidDataException{
-nullCheck(input);
 lengthOfString=stringLength(input);
 validateNumber(lengthOfString,num);
 int index=0;
@@ -143,7 +129,6 @@ return substr;
 
 
 public String charReplace(String input,int start,int end,String replacingCharSequence) throws InvalidDataException{
-nullCheck(input);
 nullCheck(replacingCharSequence);
 lengthOfString=stringLength(input);
 indexRangeCheck(lengthOfString,start,end);
