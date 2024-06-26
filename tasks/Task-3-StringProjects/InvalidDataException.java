@@ -1,4 +1,4 @@
-package com.string;
+package com.utility;
 
 public class InvalidDataException extends Exception {
 
