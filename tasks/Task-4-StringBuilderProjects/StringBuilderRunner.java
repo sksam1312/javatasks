@@ -13,7 +13,7 @@ StringBuilder sb=sbp.getStringBuilder();
 StringBuilder output;
 
 try{
-System.out.println("Enter a String to append and get its length:");
+System.out.println("Enter a String to  get its length:");
 input=sc.nextLine();
 sb=sbp.getStringBuilder(input);
 System.out.println("The length of the String is "+sbp.stringLength(sb));
@@ -26,28 +26,21 @@ sc.nextLine();
 
 
 try{
-System.out.println("Enter a String to append and get its length:");
+System.out.println("Enter a line of multiple String:");
 str=sc.nextLine();
+if(str.contains(" ")){
 sb=sbp.getStringBuilder(str);
 System.out.println("The length of the String is "+sbp.stringLength(sb));
-System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
-sc.nextLine();
-String[] stringArray=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-stringArray[i]=sc.nextLine();
-}
-StringBuilder[] inputs = new StringBuilder[stringArray.length];
-for (int i = 0;i<stringArray.length;i++) {
-inputs[i] = new StringBuilder(stringArray[i]);
-}
 System.out.println("Enter any character/special character to seperate the given strings in between:");
 charInput=sc.next().charAt(0);
 sc.nextLine();
-output=sbp.seperateWithChar(sb,inputs,charInput);
+output=sbp.seperateWithChar(sb,charInput);
 System.out.println("The final string is "+output.toString());
 System.out.println("The length of the final String is "+sbp.stringLength(output));
+}
+else{
+System.out.println("The given input String doesn't contain a space for seperating the strings with a character/special character.");
+}
 }
 catch(Exception exp){
 System.out.println("Error: "+ exp.getMessage());
@@ -57,23 +50,18 @@ sc.nextLine();
 
 
 try{
-System.out.println("Enter multiple Strings with space in between:");
+System.out.println("Enter a line of multiple string:");
 input=sc.nextLine();
 sb=sbp.getStringBuilder(input);
-if(input.contains(" ")){
-System.out.println("Enter a String to insert in between the two Strings:");
+System.out.println("Enter a String to insert in the input String:");
 str=sc.nextLine();
-System.out.println("Enter the space number where you want to insert in between the Strings:");
+System.out.println("Enter the index where you want to insert the String:");
 num=sc.nextInt();
 sc.nextLine();
 System.out.println("The length of the String is "+sbp.stringLength(sb));
 output=sbp.insertString(sb,str,num);
 System.out.println("The final String is "+output.toString());
 System.out.println("The length of the Final String is "+sbp.stringLength(output));
-}
-else{
-System.out.println("There is no space found in the given String.Please provide valid input String.");
-}
 }
 catch(Exception exp){
 System.out.println("Error: "+ exp.getMessage());
@@ -113,8 +101,8 @@ System.out.println("Enter a character from the string to replace:");
 char toReplace=sc.nextLine().charAt(0);
 if(input.contains(String.valueOf(toReplace))){
 System.out.println("Enter the replacing character to update:");
-charInput=sc.nextLine().charAt(0);
-output=sbp.replaceCharacterWithOther(sb,toReplace,charInput);
+char replacingChar=sc.nextLine().charAt(0);
+output=sbp.replaceCharacterWithOther(sb,toReplace,replacingChar);
 System.out.println("The final String is "+output.toString());
 System.out.println("The length of the Final String is "+sbp.stringLength(output));
 }

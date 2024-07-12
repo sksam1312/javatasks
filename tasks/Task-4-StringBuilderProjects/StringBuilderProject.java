@@ -22,32 +22,24 @@ return output;
 }
 
 
-public StringBuilder seperateWithChar(StringBuilder sb,StringBuilder[] inputs,char charInput) throws InvalidDataException{
-DataValidation.nullCheck(sb);
-DataValidation.nullCheck(inputs);
+public StringBuilder seperateWithChar(StringBuilder sb,char charInput) throws InvalidDataException{
+int lengthOfString=stringLength(sb);
 if (!Character.isDefined(charInput)) {
 throw new InvalidDataException("Invalid character: " + charInput);
 }
-for(int i=0;i<inputs.length;i++){
-sb.append(charInput);
-sb.append(inputs[i].toString());
+for(int i=0;i<lengthOfString;i++){
+if(sb.charAt(i)==' '){
+sb.setCharAt(i,charInput);
+}
 }
 return sb;
 }
 
 
-public StringBuilder insertString(StringBuilder sb,String toInsert,int spaceNum) throws InvalidDataException{
+public StringBuilder insertString(StringBuilder sb,String toInsert,int index) throws InvalidDataException{
 DataValidation.nullCheck(sb);
 DataValidation.nullCheck(toInsert);
-String[] strArray=sb.toString().split(" ");
-if(spaceNum<1||spaceNum>=strArray.length){
-throw new InvalidDataException("The space number value is out of range.Please provide valid input.");
-}
-int index=0;
-for(int i=0;i<spaceNum;i++){
-index=index+(strArray[i].length())+1;
-}
-sb.insert(index,toInsert+" ");
+sb.insert(index,toInsert);
 return sb;
 }
 
@@ -68,7 +60,11 @@ throw new InvalidDataException("Invalid character: " + toReplace);
 if (!Character.isDefined(replacingChar)) {
 throw new InvalidDataException("Invalid character: " + replacingChar);
 }
-sb.replace(0,lengthOfString,sb.toString().replace(toReplace,replacingChar));
+for(int i=0;i<lengthOfString;i++){
+if(sb.charAt(i)==toReplace){
+sb.setCharAt(i,replacingChar);
+}
+}
 return sb;
 }
 
@@ -89,9 +85,8 @@ return sb;
 
 
 public StringBuilder replaceWithCharSequence(StringBuilder sb,String str,int startIndex,int endIndex) throws InvalidDataException{
-DataValidation.nullCheck(sb);
-DataValidation.nullCheck(str);
 int lengthOfString=stringLength(sb);
+DataValidation.nullCheck(str);
 DataValidation.indexRangeCheck(lengthOfString,startIndex,endIndex);
 sb.replace(startIndex,endIndex,str);
 return sb;
