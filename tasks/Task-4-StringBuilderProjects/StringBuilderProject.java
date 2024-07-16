@@ -60,10 +60,12 @@ throw new InvalidDataException("Invalid character: " + toReplace);
 if (!Character.isDefined(replacingChar)) {
 throw new InvalidDataException("Invalid character: " + replacingChar);
 }
-for(int i=0;i<lengthOfString;i++){
-if(sb.charAt(i)==toReplace){
-sb.setCharAt(i,replacingChar);
-}
+String oldChar=Character.toString(toReplace);
+String newChar=Character.toString(replacingChar);
+int index=sb.indexOf(oldChar);
+while(index!=-1){
+sb.replace(index,index+1,newChar);
+index=sb.indexOf(oldChar,index+1);
 }
 return sb;
 }
