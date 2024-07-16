@@ -1,5 +1,5 @@
 package com.birds;
 
-public  class Parrotmod extends Birdabstract {
+public  class ParrotMod extends BirdAbstract {
 
 }

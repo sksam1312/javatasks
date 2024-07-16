@@ -1,4 +1,5 @@
 package com.vehicle;
+import com.utility.*;
 
 public class Car{
 
@@ -6,29 +7,35 @@ private int yearOfMake;
 private String engineNumber;
 private String type;
 
-public void Car(String a){
-System.out.println(a);
+
+public Car(){}
+
+public Car(String message) throws InvalidDataException{
+DataValidation.nullCheck(message);
+System.out.println(message);
 }
 
-public void setyearOfMake(int make){
+public void setYearOfMake(int make){
 yearOfMake=make;
 }
-public void setengineNumber(String no){
+public void setEngineNumber(String no) throws InvalidDataException{
+DataValidation.nullCheck(no);
 engineNumber=no;
 }
-public void settype(String t){
-type=t;
+public void setType(String typ) throws InvalidDataException{
+DataValidation.nullCheck(typ);
+type=typ;
 }
-public int getyearOfMake(){
+public int getYearOfMake(){
 return yearOfMake;
 }
-public String getengineNumber(){
+public String getEngineNumber(){
 return engineNumber;
 }
-public String gettype(){
+public String getType(){
 return type;
 }
-public void maintenance(){
-System.out.println("Car under maintenance");
+public String maintenance(){
+return "Car under maintenance";
 }
 }

@@ -1,4 +1,5 @@
 package com.vehicle;
+import com.utility.*;
 
 public class SCross extends Car{
 
@@ -8,32 +9,34 @@ private String model;
 private String color;
 
 
-public void setseats(int s){
-seats=s;
+public void setSeats(int seat){
+seats=seat;
 }
-public void setairBags(int bags){
+public void setAirBags(int bags){
 airBags=bags;
 }
-public void setmodel(String m){
-model=m;
+public void setModel(String mod) throws InvalidDataException{
+DataValidation.nullCheck(mod);
+model=mod;
 }
-public void setcolor(String c){
-color=c;
+public void setColor(String col) throws InvalidDataException{
+DataValidation.nullCheck(col);
+color=col;
 }
 
-public int getseats(){
+public int getSeats(){
 return seats;
 }
-public int getairBags(){
+public int getAirBags(){
 return airBags;
 }
-public String getmodel(){
+public String getModel(){
 return model;
 }
-public String getcolor(){
+public String getColor(){
 return color;
 }
-public void maintenance(){
-System.out.println("Maruthi Scross under maintenance");
+public String maintenance(){
+return "Maruthi Scross under maintenance";
 }
 }

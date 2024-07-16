@@ -1,6 +1,6 @@
 package com.birds;
 
-public abstract class Birdabstract {
+public abstract class BirdAbstract {
 public void fly(){
 System.out.println("I am flying");
 }
