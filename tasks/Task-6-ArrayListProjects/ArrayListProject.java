@@ -45,6 +45,7 @@ return al;
 
 
 public ArrayList<Integer> getIntegerList(int[] num)  throws InvalidDataException{
+DataValidation.nullCheck(num);
 ArrayList<Integer> al=new ArrayList<Integer>();
 for(int i=0;i<num.length;i++){
 al.add(num[i]);
