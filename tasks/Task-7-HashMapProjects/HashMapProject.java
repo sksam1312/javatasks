@@ -30,7 +30,9 @@ return size;
 }
 
 
-public <K,V> HashMap<K,V> getHashMap(K[] keys ,V[] values){
+public <K,V> HashMap<K,V> getHashMap(K[] keys ,V[] values) throws InvalidDataException{
+DataValidation.nullCheck(keys);
+DataValidation.nullCheck(values);
 HashMap<K,V> hash=new HashMap<>();
 for(int i=0;i<keys.length;i++){
 hash.put(keys[i],values[i]);
@@ -53,6 +55,7 @@ return hash.containsValue(value);
 
 public <K, V> HashMap<K,V> updateValues(HashMap<K,V> hash,V[] newValues) throws InvalidDataException{
 DataValidation.nullCheck(hash);
+DataValidation.nullCheck(newValues);
 Set<K> keys = hash.keySet();
 int i = 0;
 for (K key : keys) {
