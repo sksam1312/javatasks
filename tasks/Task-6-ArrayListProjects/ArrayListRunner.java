@@ -3,22 +3,22 @@ import java.util.*;
 
 
 public class ArrayListRunner{
-
 public static void main(String[] args){
-int size,num,index,startIndex,endIndex;
+int size, num, index, startIndex, endIndex;
 String input,output;
 Scanner sc=new Scanner(System.in);
-ArrayListProject alp=new ArrayListProject();
+ArrayListProject alp = new ArrayListProject();
 
 
 try{
-ArrayList al=alp.getArrayList();
-size=alp.getSize(al);
-System.out.println("The ArrayList is "+al);
-System.out.println("The size of given ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+ArrayList<Object> al = alp.getArrayList();
+ListOperations<Integer> lobj=new GetSize<>(al);
+size=alp.performOperation(lobj);
+System.out.println("The ArrayList is " + al);
+System.out.println("The size of given ArrayList is " + size);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
@@ -26,20 +26,21 @@ sc.nextLine();
 
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++){
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
@@ -47,101 +48,110 @@ sc.nextLine();
 
 try{
 System.out.println("Enter the number of integer inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-int[] intArray=new int[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter Integer "+(i+1));
-intArray[i]=sc.nextInt();
+Integer[] intArray = new Integer[num];
+for (int i = 0; i < num; i++){
+System.out.println("Enter Integer " + (i + 1));
+intArray[i] = sc.nextInt();
 }
-ArrayList<Integer> intList=alp.getIntegerList(intArray);
-size=alp.getSize(intList);
-System.out.println("The ArrayList is "+intList);
-System.out.println("The size of given ArrayList is "+size);
+List<Integer> intList = alp.getList(intArray);
+ListOperations<Integer> lobj=new GetSize<>(intList);
+size = alp.performOperation(lobj);;
+System.out.println("The ArrayList is " + intList);
+System.out.println("The size of given ArrayList is " + size);
 }
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 
 try{
-ArrayListProject alp1=new ArrayListProject("Custom obj1");
-ArrayListProject alp2=new ArrayListProject("Custom obj2");
-ArrayListProject alp3=new ArrayListProject("Custom obj3");
-ArrayListProject [] obj={alp1,alp2,alp3};
-ArrayList<ArrayListProject> al=alp.addCustomObject(obj);
-size=alp.getSize(al);
-System.out.println("The ArrayList is "+al);
-System.out.println("The size of given ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+ArrayListProject alp1 = new ArrayListProject("Custom obj1");
+ArrayListProject alp2 = new ArrayListProject("Custom obj2");
+ArrayListProject alp3 = new ArrayListProject("Custom obj3");
+ArrayListProject[] obj = {alp1, alp2, alp3};
+List<ArrayListProject> al = alp.getList(obj);
+ListOperations<Integer> lobj=new GetSize<>(al);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + al);
+System.out.println("The size of given ArrayList is " + size);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
-try{
+
+try {
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] stringInputs = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1) + ":");
+stringInputs[i] = sc.nextLine();
 }
 System.out.println("Enter the number of integer inputs you are going to give:");
-num=sc.nextInt();
-sc.nextLine();
-int[] intArray=new int[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter Integer "+(i+1));
-intArray[i]=sc.nextInt();
+num = sc.nextInt();
+sc.nextLine(); 
+Integer[] intInputs = new Integer[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter Integer " + (i + 1) + ":");
+intInputs[i] = sc.nextInt();
 }
-ArrayListProject alp1=new ArrayListProject("Custom obj1");
-ArrayListProject alp2=new ArrayListProject("Custom obj2");
-ArrayListProject alp3=new ArrayListProject("Custom obj3");
-ArrayListProject [] obj={alp1,alp2,alp3};
-ArrayList<Object> alObj=alp.addVariousObjects(inputs,intArray,obj);
-size=alp.getSize(alObj);
-System.out.println("The ArrayList is "+alObj);
-System.out.println("The size of given ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+ArrayListProject alp1 = new ArrayListProject("Custom obj1");
+ArrayListProject alp2 = new ArrayListProject("Custom obj2");
+ArrayListProject alp3 = new ArrayListProject("Custom obj3");
+ArrayListProject[] customObjects = {alp1, alp2, alp3};
+List<String> stringList = alp.getList(stringInputs);
+List<Integer> intList = alp.getList(intInputs);
+List<ArrayListProject> customObjectList = alp.getList(customObjects);
+List<Object> combinedList = new ArrayList<>();
+combinedList.addAll(stringList);
+combinedList.addAll(intList);
+combinedList.addAll(customObjectList);
+ListOperations<Integer> lobj=new GetSize<>(combinedList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is: " + combinedList);
+System.out.println("The size of the given ArrayList is: " + size);
+} 
+catch (Exception exp) {
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
-sc.nextLine();
+sc.nextLine(); 
 }
-
 
 
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++){
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
 System.out.println("Enter a String from the ArrayList to find the index of that String:");
-input=sc.nextLine();
-index=alp.findIndexOfString(strList,input);
-if(index==-1)
-{
-System.out.println("The given input String doesn't present in the ArrayList.Please Check.");
+input = sc.nextLine();
+lobj=new FindIndexOfElement<>(strList, input);
+index = alp.performOperation(lobj);
+if (index == -1){
+System.out.println("The given input String doesn't present in the ArrayList. Please Check.");
+} else {
+System.out.println("The Index of the given input String in the ArrayList is " + index);
 }
-else{
-System.out.println("The Index of the given input String in the ArrayList is "+index);
-}
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
@@ -149,25 +159,27 @@ sc.nextLine();
 
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++){
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+ListOperations<Iterator<String>> iter=new IteratingList<>(strList);
+Iterator<String> iterator =alp.performOperation(iter);
 System.out.println("The iteration of given ArrayList is:");
-Iterator<String> iterator=alp.iteratingList(strList);
-for(;iterator.hasNext();){
+while (iterator.hasNext()){
 System.out.println(iterator.next());
 }
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
@@ -175,377 +187,316 @@ sc.nextLine();
 
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
 System.out.println("Enter the index from the ArrayList to find a String: ");
-index=sc.nextInt();
+index = sc.nextInt();
 sc.nextLine();
-output=alp.findingStringAtIndex(strList,index);
-System.out.println("The value of String at the given index is "+output);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+ListOperations<String> strOperation=new FindingElementAtIndex<>(strList,index);
+output = alp.performOperation(strOperation);
+System.out.println("The value of String at the given index is " + output);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
-
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
 System.out.println("Enter a String from the ArrayList to find the index of that String:");
 input=sc.nextLine();
-int firstIndex=alp.findIndexOfString(strList,input);
-int lastIndex=alp.findingLastIndexOfString(strList,input);
-if(firstIndex==-1)
-{
-System.out.println("The given input String doesn't present in the ArrayList.Please Check.");
-}
+lobj=new FindIndexOfElement<>(strList, input);
+int firstIndex= alp.performOperation(lobj);
+lobj=new FindingLastIndexOfElement<>(strList, input);
+int lastIndex= alp.performOperation(lobj);
+if(firstIndex == -1){
+System.out.println("The given input String doesn't present in the ArrayList. Please Check.");
+} 
 else{
-System.out.println("The First Index of the given input String in the ArrayList is "+firstIndex);
-System.out.println("The Last Index of the given input String which is duplicate in the ArrayList is "+lastIndex);
+System.out.println("The First Index of the given input String in the ArrayList is " + firstIndex);
+System.out.println("The Last Index of the given input String which is duplicate in the ArrayList is " + lastIndex);
 }
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 
+
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
-System.out.println("Enter a String to add to the ArrayList:");
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+System.out.println("Enter a String to insert into the ArrayList");
 input=sc.nextLine();
-System.out.println("Enter the index position where you want to add/insert the String:");
-index=sc.nextInt();
+System.out.println("Enter the index position to put the element at the list");
+index = sc.nextInt();
 sc.nextLine();
-strList=alp.insertIntoArrayList(strList,input,index);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+ListOperations<List<String>> loStr=new InsertIntoList<>(strList,input,index);
+strList= alp.performOperation(loStr);
+size = alp.performOperation(lobj);
+System.out.println("The Final ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 try{
 System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++){
+System.out.println("Enter String " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
-System.out.println("Enter the starting index position where you want to start to make sublist:");
-startIndex=sc.nextInt();
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+System.out.println("Enter the start index to be sublisted:");
+startIndex = sc.nextInt();
+System.out.println("Enter the end index to be sublisted:");
+endIndex = sc.nextInt();
 sc.nextLine();
-System.out.println("Enter the ending index position to make the sublist:");
-endIndex=sc.nextInt();
-sc.nextLine();
-ArrayList<String> newList=alp.arrayListSubList(strList,startIndex,endIndex);
-size=alp.getSize(newList);
-System.out.println("The New ArrayList is "+newList);
-System.out.println("The size of New ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+ListOperations<List<String>> loStr=new ListSubList<>(strList, startIndex, endIndex);
+List<String> newSubList = alp.performOperation(loStr);
+ArrayList<String> subList=new ArrayList<>(newSubList);
+System.out.println("The sublist of the given ArrayList is " + subList);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 
 try{
-System.out.println("Enter the number of string inputs you are going to give for ArrayList one:");
-num=sc.nextInt();
+System.out.println("Enter the number of strings for the first list:");
+num = sc.nextInt();
+sc.nextLine(); 
+String[] inputs1 = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1) + " for the first list:");
+inputs1[i] = sc.nextLine();
+}
+List<String> list1 = alp.getList(inputs1);
+System.out.println("Enter the number of strings for the second list:");
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs1=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs1[i]=sc.nextLine();
+String[] inputs2 = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1) + " for the second list:");
+inputs2[i] = sc.nextLine();
 }
-ArrayList<String> strList1=alp.getStringList(inputs1);
-size=alp.getSize(strList1);
-System.out.println("The ArrayList one  is "+strList1);
-System.out.println("The size of given ArrayList one  is "+size);
-System.out.println("Enter the number of string inputs you are going to give for ArrayList two:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs2=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs2[i]=sc.nextLine();
-}
-ArrayList<String> strList2=alp.getStringList(inputs2);
-size=alp.getSize(strList2);
-System.out.println("The ArrayList two is "+strList2);
-System.out.println("The size of given ArrayList two  is "+size);
-ArrayList<String> newList=alp.mergeLeftArrayList(strList1,strList2);
-size=alp.getSize(newList);
-System.out.println("The New ArrayList is "+newList);
-System.out.println("The size of New ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+List<String> list2 = alp.getList(inputs2);
+ListOperations<List<String>> loStr=new MergeLeftList<>(list1,list2);
+List<String> mergedLeft = alp.performOperation(loStr);
+System.out.println("Merged List (Left): " + mergedLeft);
+loStr=new MergeRightList<>(list1,list2);
+List<String> mergedRight = alp.performOperation(loStr);
+System.out.println("Merged List (Right): " + mergedRight);
+} 
+catch (Exception exp){
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
-sc.nextLine();
 }
 
-try{
-System.out.println("Enter the number of string inputs you are going to give for ArrayList one:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs1=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs1[i]=sc.nextLine();
-}
-ArrayList<String> strList1=alp.getStringList(inputs1);
-size=alp.getSize(strList1);
-System.out.println("The ArrayList one  is "+strList1);
-System.out.println("The size of given ArrayList one  is "+size);
-System.out.println("Enter the number of string inputs you are going to give for ArrayList two:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs2=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs2[i]=sc.nextLine();
-}
-ArrayList<String> strList2=alp.getStringList(inputs2);
-size=alp.getSize(strList2);
-System.out.println("The ArrayList two is "+strList2);
-System.out.println("The size of given ArrayList two  is "+size);
-ArrayList<String> newList=alp.mergeRightArrayList(strList1,strList2);
-size=alp.getSize(newList);
-System.out.println("The New ArrayList is "+newList);
-System.out.println("The size of New ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
-exp.printStackTrace();
-sc.nextLine();
-}
 
-try{
-System.out.println("Enter the number of float/decimal inputs you are going to give for ArrayList:");
-num=sc.nextInt();
+try {
+System.out.println("Enter the number of elements you are going to give:");
+num = sc.nextInt();
 sc.nextLine();
-ArrayList<Float> al=new ArrayList<>();
-for (int i=0;i<num;i++){
-System.out.println("Enter the decimal value:"+(i+1));
-Float fl=sc.nextFloat();
-al.add(fl);
+String[] inputs= new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter element " + (i + 1));
+inputs[i] = sc.nextLine();
 }
-size=alp.getSize(al);
-System.out.println("The Float ArrayList is "+al);
-System.out.println("The size of Float ArrayList is "+size);
-System.out.println("Enter the float/decimal value to remove from the ArrayList:");
-Float value=sc.nextFloat();
-sc.nextLine();
-al=alp.removeDecimalValue(al,value);
-size=alp.getSize(al);
-System.out.println("The Float ArrayList after the deciaml value removed is "+al);
-System.out.println("The size of Float ArrayList is "+size);
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+System.out.println("Enter a string to remove from the ArrayList:");
+input = sc.nextLine();
+ListOperations<Boolean> loBool =new RemoveElement<>(strList, input);
+Boolean isRemoved = alp.performOperation(loBool);
+if(isRemoved){
+System.out.println("Element removed. The updated ArrayList is " + strList);
+} else {
+System.out.println("Element not found. The ArrayList remains the same.");
 }
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+} catch (Exception exp) {
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 
-try{
-System.out.println("Enter the number of float/decimal inputs you are going to give for ArrayList:");
-num=sc.nextInt();
-sc.nextLine();
-ArrayList<Float> al=new ArrayList<>();
-for (int i=0;i<num;i++){
-System.out.println("Enter the decimal value:"+(i+1));
-Float fl=sc.nextFloat();
-al.add(fl);
+try {
+System.out.println("Enter the number of float/decimal inputs you are going to give:");
+num = sc.nextInt();
+sc.nextLine(); 
+Float[] floatInputs = new Float[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter decimal value " + (i + 1) + ":");
+floatInputs[i] = sc.nextFloat();
 }
-size=alp.getSize(al);
-System.out.println("The Float ArrayList is "+al);
-System.out.println("The size of Float ArrayList is "+size);
-System.out.println("Enter the Index number of float/decimal value to remove from the ArrayList:");
-index=sc.nextInt();
-sc.nextLine();
-al=alp.removeDecimalValueAt(al,index);
-size=alp.getSize(al);
-System.out.println("The Float ArrayList after the deciaml value removed from given index is "+al);
-System.out.println("The size of Float ArrayList is "+size);
+List<Float> floatList = alp.getList(floatInputs);
+ListOperations<Integer> lobj=new GetSize<>(floatList);
+size = alp.performOperation(lobj);
+System.out.println("The original ArrayList is: " + floatList);
+System.out.println("The size of given ArrayList is " + size);
+System.out.println("Enter the index of the decimal value you want to remove:");
+index = sc.nextInt();
+sc.nextLine(); 
+ListOperations<Float> loFloat =new RemoveElementAt<>(floatList,index);
+Float fout=alp.performOperation(loFloat);
+if(fout!=null){
+System.out.println("Element removed at given index is "+fout+".The updated ArrayList is " + floatList);
+} else {
+System.out.println("Element not found. The ArrayList remains the same.");
 }
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+} 
+catch (Exception exp) {
+System.out.println("Error: " + exp.getMessage());
+exp.printStackTrace();
+sc.nextLine(); 
+}
+
+
+try {
+System.out.println("Enter the number of elements you are going to give:");
+num = sc.nextInt();
+sc.nextLine();
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter element " + (i + 1));
+inputs[i] = sc.nextLine();
+}
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is " + strList);
+System.out.println("The size of given ArrayList is " + size);
+System.out.println("Clearing the ArrayList...");
+ListOperations<List<String>> loStr=new ClearList<>(strList);
+alp.performOperation(loStr);
+System.out.println("The cleared ArrayList is " + strList);
+} catch (Exception exp) {
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 
-try{
-System.out.println("Enter the number of string inputs you are going to give for ArrayList one:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs1=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs1[i]=sc.nextLine();
+try {
+System.out.println("Enter the number of string inputs for the ArrayList:");
+num = sc.nextInt();
+sc.nextLine(); 
+String[] inputs = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1) + ":");
+inputs[i] = sc.nextLine();
 }
-ArrayList<String> strList1=alp.getStringList(inputs1);
-size=alp.getSize(strList1);
-System.out.println("The ArrayList one  is "+strList1);
-System.out.println("The size of given ArrayList one  is "+size);
-System.out.println("Enter the number of string inputs you are going to give for ArrayList two:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs2=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs2[i]=sc.nextLine();
+List<String> strList = alp.getList(inputs);
+ListOperations<Integer> lobj=new GetSize<>(strList);
+size = alp.performOperation(lobj);
+System.out.println("The ArrayList is: " + strList);
+System.out.println("Enter the String to check if it is present in the ArrayList:");
+String elementToCheck = sc.nextLine();
+ListOperations<Boolean> loBool =new ContainsElement<>(strList,elementToCheck);
+Boolean isPresent= alp.performOperation(loBool);
+if (isPresent) {
+System.out.println("The given String is present in the ArrayList.");
+} else {
+System.out.println("The given String is not present in the ArrayList.");
 }
-ArrayList<String> strList2=alp.getStringList(inputs2);
-size=alp.getSize(strList2);
-System.out.println("The ArrayList two subList is "+strList2);
-System.out.println("The size of given ArrayList two  is "+size);
-ArrayList<String> newList=alp.removeSubList(strList1,strList2);
-size=alp.getSize(newList);
-System.out.println("The New ArrayList is "+newList);
-System.out.println("The size of New ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+} 
+catch (Exception exp) {
+System.out.println("Error: " + exp.getMessage());
 exp.printStackTrace();
 sc.nextLine();
 }
 
 
-try{
-System.out.println("Enter the number of string inputs you are going to give for ArrayList one:");
-num=sc.nextInt();
+try {
+System.out.println("Enter the number of string inputs for the first ArrayList:");
+num = sc.nextInt();
 sc.nextLine();
-String[] inputs1=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs1[i]=sc.nextLine();
+String[] inputs1 = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1) + " for the first ArrayList:");
+inputs1[i] = sc.nextLine();
 }
-ArrayList<String> strList1=alp.getStringList(inputs1);
-size=alp.getSize(strList1);
-System.out.println("The ArrayList one  is "+strList1);
-System.out.println("The size of given ArrayList one  is "+size);
-System.out.println("Enter the number of string inputs you are going to give for ArrayList two:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs2=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs2[i]=sc.nextLine();
+List<String> list1 = alp.getList(inputs1);
+System.out.println("The first ArrayList is: " + list1);
+System.out.println("Enter the number of string inputs for the second ArrayList:");
+num = sc.nextInt();
+sc.nextLine(); 
+String[] inputs2 = new String[num];
+for (int i = 0; i < num; i++) {
+System.out.println("Enter String " + (i + 1) + " for the second ArrayList:");
+inputs2[i] = sc.nextLine();
 }
-ArrayList<String> strList2=alp.getStringList(inputs2);
-size=alp.getSize(strList2);
-System.out.println("The ArrayList two subList is "+strList2);
-System.out.println("The size of given ArrayList two  is "+size);
-ArrayList<String> newList=alp.retainSubList(strList1,strList2);
-size=alp.getSize(newList);
-System.out.println("The New ArrayList is "+newList);
-System.out.println("The size of New ArrayList is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
+List<String> list2 = alp.getList(inputs2);
+System.out.println("The second ArrayList is: " + list2);
+ListOperations<List<String>> loStr=new RemoveSubList<>(list1, list2);
+List<String> removedList = alp.performOperation(loStr);
+System.out.println("The first ArrayList after removing elements present in the second ArrayList is: " + removedList);
+loStr=new RetainSubList<>(list1,list2);
+List<String> retainedList = alp.performOperation(loStr);
+System.out.println("The first ArrayList after retaining only elements present in the second ArrayList is: " + retainedList);
+} 
+catch (Exception exp) {
+System.out.println("Error during list creation: " + exp.getMessage());
 exp.printStackTrace();
-sc.nextLine();
+sc.nextLine(); 
 }
 
-try{
-System.out.println("Enter the number of long inputs you are going to give for ArrayList:");
-num=sc.nextInt();
-sc.nextLine();
-ArrayList<Long> al=new ArrayList<>();
-for (int i=0;i<num;i++){
-System.out.println("Enter the value for long:"+(i+1));
-Long lon=sc.nextLong();
-al.add(lon);
 }
-size=alp.getSize(al);
-System.out.println("The ArrayList of Long values is "+al);
-System.out.println("The size of long ArrayList is "+size);
-al=alp.clearElements(al);
-size=alp.getSize(al);
-System.out.println("The ArrayList of Long values after cleared is "+al);
-System.out.println("The size of long ArrayList after cleared is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
-exp.printStackTrace();
-sc.nextLine();
-}
-
-try{
-System.out.println("Enter the number of string inputs you are going to give:");
-num=sc.nextInt();
-sc.nextLine();
-String[] inputs=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter String "+(i+1));
-inputs[i]=sc.nextLine();
-}
-ArrayList<String> strList=alp.getStringList(inputs);
-size=alp.getSize(strList);
-System.out.println("The ArrayList is "+strList);
-System.out.println("The size of given ArrayList is "+size);
-System.out.println("Enter a String to check whether the ArrayList contains it or not:");
-input=sc.nextLine();
-boolean isPresent=alp.containsString(strList,input);
-if(isPresent){
-System.out.println("The given String is present in the ArrayList");
-}
-else{
-System.out.println("The given String is not present in the ArrayList");
-}
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
-exp.printStackTrace();
-sc.nextLine();
 }
 
 
-}
-}
+
+
+                
