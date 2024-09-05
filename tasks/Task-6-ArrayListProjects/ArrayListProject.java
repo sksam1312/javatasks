@@ -1,6 +1,10 @@
 package com.collectionz;
-import com.utility.*;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import com.utility.DataValidation;
+import com.utility.InvalidDataException;
+
 
 
 public class ArrayListProject {
@@ -27,24 +31,22 @@ return operation.perform();
 }
 
 
-public <T> ArrayList<T> getArrayList() {
-return new ArrayList<>();
+public <T> ArrayList<T> getArrayList(ListOperations<T> operation) {
+DataValidation.nullCheck(operation);
+return operation.perform();
+}
+
+
+public <T> ArrayList<T> getList(T[] array,ListOperations<T> operation) throws InvalidDataException {
+DataValidation.nullCheck(array);
+DataValidation.nullCheck(operation);
+return operation.perform();
 }
 
 
 public <T> int getSize(List<T> list) throws InvalidDataException {
 DataValidation.nullCheck(list);
 return list.size();
-}
-
-
-public <T> ArrayList<T> getList(T[] array) throws InvalidDataException {
-DataValidation.nullCheck(array);
-ArrayList<T> list = new ArrayList<>();
-for (T element : array) {
-list.add(element);
-}
-return list;
 }
 
 
