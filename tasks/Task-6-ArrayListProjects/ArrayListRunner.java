@@ -15,7 +15,7 @@ ArrayListProject alp = new ArrayListProject();
 
 
 try{
-ArrayList<Object> al = alp.getArrayList();
+List<T> al = alp.getArrayList();
 size = alp.getSize(al);
 System.out.println("The ArrayList is " + al);
 System.out.println("The size of given ArrayList is " + size);

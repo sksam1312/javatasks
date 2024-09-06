@@ -6,7 +6,6 @@ import com.utility.DataValidation;
 import com.utility.InvalidDataException;
 
 
-
 public class ArrayListProject {
 
 private String name;
@@ -25,22 +24,18 @@ return name;
 }
 
 
-public <T> T performOperation(ListOperations<T> operation) throws InvalidDataException {
-DataValidation.nullCheck(operation);
-return operation.perform();
+public <T> List<T> getArrayList() {
+return new ArrayList<>();
 }
 
 
-public <T> ArrayList<T> getArrayList(ListOperations<T> operation) {
-DataValidation.nullCheck(operation);
-return operation.perform();
-}
-
-
-public <T> ArrayList<T> getList(T[] array,ListOperations<T> operation) throws InvalidDataException {
+public <T> List<T> getList(T[] array) throws InvalidDataException {
 DataValidation.nullCheck(array);
-DataValidation.nullCheck(operation);
-return operation.perform();
+List<T> list = getArrayList();
+for (T element : array) {
+list.add(element);
+}
+return list;
 }
 
 
