@@ -1,6 +1,8 @@
 package com.collectionz;
-import java.util.*;
-import com.utility.*;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Scanner;
+import com.utility.InvalidDataException;
 
 
 public class HashMapRunner{
@@ -13,7 +15,7 @@ HashMapProject hmp= new HashMapProject();
 
 
 try{
-HashMap<String,Integer> hash=new HashMap<>();
+Map<String,Integer> hash=hmp.getHashMap();
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -29,16 +31,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -54,16 +54,15 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-Integer[] intKeys=new Integer[num];
-Integer[] intValues=new Integer[num];
+Map<Integer,Integer> hash=hmp.getHashMap();
 System.out.println("Enter the Integer keys");
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-intKeys[i]=sc.nextInt();
+Integer key=sc.nextInt();
 System.out.println("Enter the Integer value for key"+(i+1));
-intValues[i]=sc.nextInt();
+Integer value=sc.nextInt();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<Integer,Integer> hash=hmp.getHashMap(intKeys,intValues);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -75,21 +74,20 @@ sc.nextLine();
 }
 
 
-
 try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-Integer[] intValues=new Integer[num];
+Map<String,Integer> hash=hmp.getHashMap();
 System.out.println("Enter the String keys");
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the Integer value for key"+(i+1));
-intValues[i]=sc.nextInt();
+Integer value=sc.nextInt();
+sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,Integer> hash=hmp.getHashMap(keys,intValues);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -101,48 +99,20 @@ sc.nextLine();
 }
 
 
-
 try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-Integer[] intValues=new Integer[num];
-System.out.println("Enter the String keys");
-for(int i=0;i<num;i++){
-System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
-System.out.println("Enter the Integer value for key"+(i+1));
-intValues[i]=sc.nextInt();
-sc.nextLine();
-}
-HashMap<String,Integer> hash=hmp.getHashMap(keys,intValues);
-size=hmp.getSize(hash);
-System.out.println("The HashMap is " +hash);
-System.out.println("HashMap is created and the size of the HashMap is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
-exp.printStackTrace();
-sc.nextLine();
-}
-
-
-
-try{
-System.out.println("Enter the number of Key-Value pairs to be inserted");
-num=sc.nextInt();
-sc.nextLine();
-String[] keys=new String[num];
+Map<String,HashMapProject> hash=hmp.getHashMap();
 HashMapProject[] customValues=new HashMapProject[num];
 System.out.println("Enter the String keys");
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 customValues[i]=new HashMapProject("CustomObject"+(i+1));
+hmp.putPairsToMap(hash,key,customValues[i]);
 System.out.println("Custom object created and added as value for key"+(i+1));
 }
-HashMap<String,HashMapProject> hash=hmp.getHashMap(keys,customValues);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -154,21 +124,21 @@ sc.nextLine();
 }
 
 
+
 try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
+Map<String,String> hash=hmp.getHashMap();
 System.out.println("Enter the String keys");
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
 String keyInput = sc.nextLine();
-keys[i]="null".equals(keyInput) ? null : keyInput;
+String key="null".equals(keyInput) ? null : keyInput;
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -184,18 +154,17 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
+Map<String,String> hash=hmp.getHashMap();
 System.out.println("Enter the String keys");
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
 String keyInput = sc.nextLine();
-keys[i]="null".equals(keyInput) ? null : keyInput;
+String key="null".equals(keyInput) ? null : keyInput;
 System.out.println("Enter the String value for key"+(i+1));
 String valueInput = sc.nextLine();
-values[i]="null".equals(keyInput) ? null : valueInput;
+String value="null".equals(keyInput) ? null : valueInput;
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -211,16 +180,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -246,16 +213,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -281,25 +246,22 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
-String[] newValues=new String[num];
-for(int i=0;i<num;i++){
-System.out.println("Enter the new String value for key"+(i+1));
-newValues[i]=sc.nextLine();
-}
-hash=hmp.updateValues(hash,newValues);
+System.out.println("Enter the key which value has to be updated");
+String key=sc.nextLine();
+System.out.println("Enter the new value for the key");
+String value=sc.nextLine();
+hash=hmp.updateValueForAKey(hash,key,value);
 System.out.println("The updated values of HashMap is " +hash);
 System.out.println("The size of the HashMap is "+size);
 }
@@ -315,16 +277,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -344,16 +304,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -369,56 +327,18 @@ sc.nextLine();
 }
 
 
-
 try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-String keyInput = sc.nextLine();
-keys[i]="null".equals(keyInput) ? null : keyInput;
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-String valueInput = sc.nextLine();
-values[i]="null".equals(keyInput) ? null : valueInput;
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
-size=hmp.getSize(hash);
-System.out.println("The HashMap is " +hash);
-System.out.println("HashMap is created and the size of the HashMap is "+size);
-System.out.println("Enter the Key which has the value null");
-String nullkey=sc.nextLine();
-System.out.println("Enter the value for that null key");
-String valueNullKey=sc.nextLine();
-HashMap<String,String> hashStr=hmp.putValueForNullKey(hash,nullkey,valueNullKey);
-System.out.println("The Updated HashMap is " +hashStr);
-System.out.println("The size of the HashMap is "+size);
-}
-catch(Exception exp){
-System.out.println("Error: "+ exp.getMessage());
-exp.printStackTrace();
-sc.nextLine();
-}
-
-
-
-try{
-System.out.println("Enter the number of Key-Value pairs to be inserted");
-num=sc.nextInt();
-sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
-for(int i=0;i<num;i++){
-System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
-System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
-}
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -440,16 +360,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -474,16 +392,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -507,16 +423,14 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("HashMap is created and the size of the HashMap is "+size);
@@ -542,39 +456,35 @@ try{
 System.out.println("Enter the number of Key-Value pairs to be inserted for first map");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys1=new String[num];
-String[] values1=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys1[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values1[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys1,values1);
 size=hmp.getSize(hash);
-System.out.println("The HashMap is " +hash);
+System.out.println("The First HashMap is " +hash);
 System.out.println("The First HashMap is created and the size of the HashMap is "+size);
 
 System.out.println("Enter the number of Key-Value pairs to be inserted for second map");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys2=new String[num];
-String[] values2=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> map=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys2[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values2[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(map,key,value);
 }
-HashMap<String,String> map=hmp.getHashMap(keys2,values2);
 size=hmp.getSize(map);
-System.out.println("The HashMap is " +map);
+System.out.println("The second HashMap is " +map);
 System.out.println("The second HashMap is created and the size of the HashMap is "+size);
 map=hmp.hashMapTransfer(hash,map);
 size=hmp.getSize(map);
-System.out.println("The HashMap is " +map);
+System.out.println("The Final HashMap is " +map);
 System.out.println("The Final HashMap is created and the size of the HashMap is "+size);
 
 }
@@ -587,19 +497,17 @@ sc.nextLine();
 
 
 try{
-System.out.println("Enter the number of Key-Value pairs to be inserted for first map");
+System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("The HashMap is created and the size of the HashMap is "+size);
@@ -614,19 +522,17 @@ sc.nextLine();
 
 
 try{
-System.out.println("Enter the number of Key-Value pairs to be inserted for first map");
+System.out.println("Enter the number of Key-Value pairs to be inserted");
 num=sc.nextInt();
 sc.nextLine();
-String[] keys=new String[num];
-String[] values=new String[num];
-System.out.println("Enter the String keys");
+Map<String,String> hash=hmp.getHashMap();
 for(int i=0;i<num;i++){
 System.out.println("Enter the Key"+(i+1));
-keys[i]=sc.nextLine();
+String key=sc.nextLine();
 System.out.println("Enter the String value for key"+(i+1));
-values[i]=sc.nextLine();
+String value=sc.nextLine();
+hmp.putPairsToMap(hash,key,value);
 }
-HashMap<String,String> hash=hmp.getHashMap(keys,values);
 size=hmp.getSize(hash);
 System.out.println("The HashMap is " +hash);
 System.out.println("The HashMap is created and the size of the HashMap is "+size);
