@@ -5,6 +5,8 @@ import java.util.Arrays;
 public class RainbowRunner{
 
 public static void main (String[] args){
+
+try{
 Rainbow v=Rainbow.VIOLET;
 Rainbow i=Rainbow.INDIGO;
 Rainbow b=Rainbow.BLUE;
@@ -20,4 +22,10 @@ for(Rainbow s:rainbow){
 System.out.println("Color code of "+s+" is "+s.getColorCode()+",Ordinal Value:"+s.ordinal());
 }
 }
+catch(Exception exp){
+System.out.println("Error:"+exp.getMessage());
+exp.printStackTrace();
+}
+}
+
 }

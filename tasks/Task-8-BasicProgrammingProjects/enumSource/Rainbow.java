@@ -1,20 +1,20 @@
 package com.basics;
 
 enum Rainbow{
+
 VIOLET(1),INDIGO(2),BLUE(3),GREEN(4),YELLOW(5),ORANGE(6),RED(7);
 
-private int colorcode;
+private final int colorCode;
 
-private Rainbow(int colorcode){
 
-this.colorcode=colorcode;
+private Rainbow(int colorCode){
+this.colorCode=colorCode;
 }
 
-public void setColorCode(int colorcode){
-this.colorcode=colorcode;
-}
 
 public int getColorCode(){
-return colorcode;
+return colorCode;
 }
+
+
 }

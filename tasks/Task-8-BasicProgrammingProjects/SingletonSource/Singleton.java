@@ -10,8 +10,8 @@ private Singleton(){
 count=count+1;
 }
 
-public void display(){
-System.out.println("No of intance created:"+count);
+public int objectCreated(){
+return count;
 }
 
 public static Singleton getInstance(){
@@ -19,10 +19,12 @@ if(obj==null){
 synchronized(Singleton.class){
 if(obj==null)
 {
-return obj=new Singleton();
+obj=new Singleton();
 }
 }
 }
 return obj;
 }
+
+
 }

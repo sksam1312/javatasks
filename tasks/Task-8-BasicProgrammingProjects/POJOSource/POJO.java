@@ -1,5 +1,7 @@
 package com.basics;
 
+import com.utility.DataValidation;
+import com.utility.InvalidDataException;
 
 public class POJO{
 
@@ -7,21 +9,24 @@ private String name;
 private int age;
 
 public POJO(){
-System.out.println("POJO object creation...");
 }
 
-public POJO(String s,int a){
-this.name=s;
-this.age=a;
+public POJO(String name,int age) throws InvalidDataException{
+DataValidation.nullCheck(name);
+this.name=name;
+this.age=age;
 }
 
+@Override
 public String toString(){
 return "Name:"+name+",Age:"+age;
 }
 
-public void setName(String name){
+public void setName(String name) throws InvalidDataException{
+DataValidation.nullCheck(name);
 this.name=name;
 }
+
 public String getName(){
 return name;
 }
@@ -29,7 +34,9 @@ return name;
 public void setAge(int age){
 this.age=age;
 }
+
 public int getAge(){
 return age;
 }
+
 }

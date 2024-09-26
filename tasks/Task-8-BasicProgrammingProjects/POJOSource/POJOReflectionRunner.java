@@ -1,12 +1,19 @@
 package com.reflect;
-import java.lang.reflect.*;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.util.Arrays;
+import com.utility.InvalidDataException;
 
 
 public class POJOReflectionRunner{
 
 public static void main(String[] args){
+
 String classname="com.basics.POJO";
+
 try{
 Class<?> pojo=Class.forName(classname);
 classname=pojo.getSimpleName();
@@ -49,10 +56,11 @@ System.out.println("Name updated for overloadobj using setter method");
 gettermethod=pojo.getDeclaredMethod("getName");
 String r=(String)gettermethod.invoke(overloadobj);
 System.out.println("Updated name:"+r);
+}
+catch(Exception exp){
+System.out.println("Error: "+ exp.getMessage());
+exp.printStackTrace();
+}
 
-}
-catch(Exception e){
-e.printStackTrace();
-}
 }
 }
