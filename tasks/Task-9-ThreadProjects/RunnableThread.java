@@ -1,38 +1,45 @@
 package com.thread;
-import java.util.logging.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.utility.DataValidation;
+import com.utility.InvalidDataException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class RunnableThread implements Runnable{
 
-private static final Logger logger=Logger.getLogger("Threadclass.class");
-private  boolean condition;
-private long millis;
+private static final Logger logger = Logger.getLogger(RunnableThread.class.getName());
+private boolean keepRunning = true;
+private long sleepTime;
+private String name;
 
-public RunnableThread(long millis){
-this.millis=millis;
-this.condition=true;
+public RunnableThread(String name, long sleepTime) throws InvalidDataException{
+DataValidation.nullCheck(name);
+this.name = name;
+this.sleepTime = sleepTime;
 }
 
-public void setCondition(boolean condition){
-this.condition=condition;
-}
 
+@Override
 public void run(){
-Thread.State state = Thread.currentThread().getState();
-logger.log(Level.INFO,"The Name of the Thread after starting is "+Thread.currentThread().getName());
-logger.log(Level.INFO,"The Priority of the RunnableThread after starting is "+Thread.currentThread().getPriority());
-logger.log(Level.INFO,"The State of the RunnableThread after starting is "+state);
-logger.log(Level.INFO,"Going to sleep: "+Thread.currentThread().getName());
+logger.log(Level.INFO, "Going to Sleep: {0} for {1} ms.", new Object[]{name, sleepTime});
+while (keepRunning){
 try{
-Thread.sleep(millis);
+Thread.sleep(sleepTime);
+} 
+catch (InterruptedException ie){
+logger.log(Level.SEVERE, "Thread interrupted: " + name, ie);
 }
-catch(InterruptedException e){
-logger.log(Level.SEVERE,"InterruptedException ",e);
+logger.log(Level.INFO, "Running: {0}, State: {1}, Priority: {2}",new Object[]{name, Thread.currentThread().getState(), Thread.currentThread().getPriority()});
 }
-logger.log(Level.INFO,"After sleeping: "+Thread.currentThread().getName());
-while(condition){
-logger.log(Level.INFO,"Loop started for " +Thread.currentThread().getName());
+logger.log(Level.INFO, "Thread Exiting: "+ name);
 }
-logger.log(Level.INFO,"Loop ended for " +Thread.currentThread().getName());
+
+
+public void stopThread(){
+keepRunning = false;
 }
+
 }
